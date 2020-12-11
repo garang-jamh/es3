@@ -5,6 +5,7 @@ import { Bar, ResponsiveBar } from '@nivo/bar';
 import { ResponsiveLine } from '@nivo/line';
 import { Link } from 'react-router-dom';
 import dashboard from './dashboard';
+import imageone from './images/Five.png'
 
 const mydata = [{ country: "AD", "hot dogs": 13 }, { country: "AE", "hot dogs": 17 }, { country: "AF", "hot dogs": 9 }];
 const mydata2 = [{ "country": "AD", "hot dog": 154, "hot dogColor": "hsl(12, 70%, 50%)", "burger": 150, "burgerColor": "hsl(35, 70%, 50%)", "sandwich": 14, "sandwichColor": "hsl(213, 70%, 50%)", "kebab": 62, "kebabColor": "hsl(10, 70%, 50%)", "fries": 107, "friesColor": "hsl(78, 70%, 50%)", "donut": 174, "donutColor": "hsl(172, 70%, 50%)"},
@@ -291,10 +292,6 @@ const styles = {
     fontFamily: "sans-serif",
     textAlign: "center"
   };
-
-const styles1 = {
-    textAlign: "center"
-};
   
 const MyResponsiveBar = () => (
     <ResponsiveBar
@@ -506,7 +503,9 @@ const Allgraphs = (props) =>{
                     <MyResponsiveBar />
                 </Grid.Column>
                 <Grid.Column>
-                    <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+                    <img src={imageone} alt="Graph image" />
+                  <div> <adder/>
+                  </div>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={3}>
@@ -547,10 +546,24 @@ const Allgraphs = (props) =>{
 }
 
 class Mover extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = { 
+      theedata: 'Appgraph'
+    }
+  }
+  handleClick(){
+    this.setState({
+      theedata: 'Appgraph'
+    })
+  }
+
   render() {
+    const { theedata } = this.state;
     return (
-      <Button>
-        <Link to={{pathname: "/dashboard", data: Appgraph}}><h2>Move to Dashboard</h2></Link>
+      <Button onClick={() => this.handleClick()}>
+        <Link to={{pathname: "/dashboard"}}><h2>Move to Dashboard</h2></Link>
+          <dashboard dataFromParent = {theedata} />
       </Button>
     )
   }
